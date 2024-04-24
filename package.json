@@ -1,0 +1,15 @@
+{
+  "name": "odysseus-security-api",
+  "version": "1.0.0",
+  "description": "Permissions API: running on postgres database and nodejs. CRUD ops for a user permissions module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Crazy8",
+  "license": "MIT",
+  "dependencies": {
+    "pg": "^8.11.5",
+    "sequelize": "^6.37.3"
+  }
+}
