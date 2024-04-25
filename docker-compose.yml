@@ -18,7 +18,7 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgres://myuser:mypassword@db:5432/myappdb
+      DATABASEa_URL: postgres://myuser:mypassword@db:5432/myappdb
 
 volumes:
   db_data:
