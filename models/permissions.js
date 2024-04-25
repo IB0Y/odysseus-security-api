@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class permission extends Model {
     /**
@@ -13,16 +11,43 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  permission.init({
-    name: DataTypes.TEXT,
-    attributes: DataTypes.JSONB,
-    parent_uuid: DataTypes.UUID,
-    isActive: DataTypes.BOOLEAN,
-    user_uuid: DataTypes.UUID,
-  }, {
-    sequelize,
-    modelName: 'permission',
-    freezeTableName: true,
-  });
+  permission.init(
+    {
+      name: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      attributes: {
+        type: DataTypes.JSONB,
+        allowNull: false,
+        defaultValue: {
+          create: false,
+          edit: false,
+          delete: false,
+          view: false,
+        },
+      },
+      parent_uuid: {
+        type: DataTypes.UUID,
+      },
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
+      user_uuid: {
+        type: DataTypes.UUID,
+        allowNull: false,
+      },
+      resouce_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+    },
+    {
+      sequelize,
+      modelName: "permission",
+      freezeTableName: true,
+    }
+  );
   return permission;
 };

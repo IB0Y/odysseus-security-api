@@ -1,40 +1,42 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('permission', {
+    await queryInterface.createTable("permission", {
       id: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        allowNull: false,
       },
       attributes: {
-        type: Sequelize.JSONB
+        type: Sequelize.JSONB,
       },
       parent_uuid: {
-        type: Sequelize.UUID
+        type: Sequelize.UUID,
       },
       user_uuid: {
-        type: Sequelize.UUID
+        type: Sequelize.UUID,
+        allowNull: false,
       },
       isActive: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('permission');
-  }
+    await queryInterface.dropTable("permission");
+  },
 };
