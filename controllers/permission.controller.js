@@ -103,3 +103,6 @@ class Permissions {
     }
   }
 }
+
+
+export default new Permissions();
