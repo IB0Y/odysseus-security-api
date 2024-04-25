@@ -25,7 +25,7 @@ class Permissions {
     }
   }
 
-  async fetchPermissionsByUUID(req, res, next) {
+  async fetchPermissionsByUserUUID(req, res, next) {
     try {
       const { user_uuid } = req.params;
 
@@ -47,9 +47,54 @@ class Permissions {
     }
   }
 
+  async fetchPermissionsByUUID(req, res, next) {
+    try {
+      const { permission_uuid: id } = req.params;
+
+      const permissions = await PermissionModel.findOne({
+        where: {
+          id,
+        },
+        include: [parent_uuid],
+      });
+
+      return ResponseService.success({
+        res,
+        status: 200,
+        data: permissions,
+        message: "Permission fetched successfully",
+      });
+    } catch (error) {
+      return ResponseService.serverError({ res });
+    }
+  }
+
+  async fetchPermissionsByResourceId(req, res, next) {
+    try {
+      const { resouce_id, user_uuid } = req.params;
+
+      const permissions = await PermissionModel.findOne({
+        where: {
+          resouce_id,
+          user_uuid,
+        },
+        include: [parent_uuid],
+      });
+
+      return ResponseService.success({
+        res,
+        status: 200,
+        data: permissions,
+        message: "Permission fetched successfully",
+      });
+    } catch (error) {
+      return ResponseService.serverError({ res });
+    }
+  }
+
   async updatePermissions(req, res, next) {
     try {
-      const { id } = req.params;
+      const { permission_uuid: id } = req.params;
       const permissions = await PermissionModel.update(
         {
           name,
@@ -77,7 +122,7 @@ class Permissions {
 
   async deletePermissions(req, res, next) {
     try {
-      const { id } = req.params;
+      const { permission_uuid: id } = req.params;
       const permissions = await PermissionModel.update(
         {
           name,
@@ -87,7 +132,7 @@ class Permissions {
         },
         {
           where: {
-            user_uuid,
+            id,
           },
         }
       );
@@ -104,5 +149,4 @@ class Permissions {
   }
 }
 
-
-export default new Permissions();
+module.exports = new Permissions();
