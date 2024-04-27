@@ -1,18 +1,29 @@
 "use strict";
 const { Model } = require("sequelize");
+const { v4: uuidv4 } = require('uuid');
+
 module.exports = (sequelize, DataTypes) => {
-  class permission extends Model {
+  class Permission extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      console.log({models})
+      Permission.belongsTo(models.Permission, {
+        as: 'parent',
+        foreignKey: 'parent_uuid'
+      });
     }
   }
-  permission.init(
+  Permission.init(
     {
+      id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: () => uuidv4(), // Use uuidv4 function to generate UUID
+        },
       name: {
         type: DataTypes.TEXT,
         allowNull: false,
@@ -45,9 +56,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "permission",
+      modelName: "Permission",
       freezeTableName: true,
     }
   );
-  return permission;
+  return Permission;
 };

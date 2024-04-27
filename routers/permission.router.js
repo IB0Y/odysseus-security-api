@@ -1,16 +1,16 @@
 const permissionController = require("../controllers/permission.controller");
 
 const routes = (app) => {
-  const api = "/api/v1/permissions/";
-  app.post(`/`, permissionController.addPermissions);
-  app.get(`/:user_uuid`, permissionController.fetchPermissionsByUserUUID);
-  app.get(`/:permission_uuid`, permissionController.fetchPermissionsByUserUUID);
+ const api = "/api/v1/permissions";
+ app.post(`${api}/`, permissionController.addPermissions);
+  app.get(`${api}/:user_uuid`, permissionController.fetchPermissionsByUserUUID);
+  app.get(`${api}/permission/:permission_uuid`, permissionController.fetchPermissionsByUUID);
   app.get(
-    `/:user_uuid/:resouce_id`,
+    `${api}/:user_uuid/:resouce_id`,
     permissionController.fetchPermissionsByResourceId
   );
-  app.put(`/:permission_uuid`, permissionController.updatePermissions);
-  app.delete(`/:permission_uuid`, permissionController.deletePermissions);
+  app.put(`${api}/:permission_uuid`, permissionController.updatePermissions);
+  app.delete(`${api}/:permission_uuid`, permissionController.deletePermissions);
 };
 
 module.exports = routes;

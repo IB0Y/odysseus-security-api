@@ -15,7 +15,12 @@ app.use(express.json());
 app.use(cors());
 
 /** ROUTING **/
+const timeLog =(req, res, next) => {
+  consola.info(`⏰ :: Time`,new Date( Date.now()).toLocaleString());
+  next();
+}
 
+app.use(timeLog);
 PermissionRoute(app);
 
 /**SERVER**/
@@ -24,6 +29,6 @@ app.listen(process.env.SERVER_PORT, () =>
 );
 
 (async () => {
-  consola.log({ databaseInstance });
-  await databaseInstance.sequelize.authenticate();
+//  consola.log({ databaseInstance });
+  await databaseInstance.authenticate();
 })();

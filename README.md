@@ -17,5 +17,5 @@ view: false,
 }
 
 ```
-
+Add collection functionality
 ```
