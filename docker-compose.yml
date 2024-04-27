@@ -1,24 +1,21 @@
-version: '3.8'
-
+version: '3'
 services:
-  db:
-    image: postgres:latest
-    restart: always
-    env_file:
-      - .env
-    ports:
-      - "5432:5432"
-    volumes:
-      - db_data:/var/lib/postgresql/data
+    database:
+      image: 'postgres:alpine'
+      ports:
+          -   5438:5432
+      environment:
+        POSTGRES_USER: crazy88
+        POSTGRES_PASSWORD: '@password12'
+        POSTGRES_DB: permissions_db
 
-  app:
-    build: ./app
-    ports:
-      - "3000:3000"
-    depends_on:
-      - db
-    environment:
-      DATABASEa_URL: postgres://myuser:mypassword@db:5432/myappdb
+    permissions_api:
+      image: 'permissions_app_api'
 
-volumes:
-  db_data:
+      env_file:
+          -   .env
+      ports:
+          -   8500:8500
+      depends_on:
+          -   database
+      restart: always
