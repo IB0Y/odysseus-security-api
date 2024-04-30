@@ -1,21 +1,11 @@
 ODYSSEUS SECURIY
+### Run
+##### Build docker image
+```
+docker composer build -t permissions_app_api
 
 ```
-Sample attributes:
+```` docker composer up -d ````
 
-```
-
-{
-name: "Create products",
-resouce_id: 10,
-rights: {
-create: false,
-edit: false,
-delete: false,
-view: false,
-}
-}
-
-```
-Add collection functionality
-```
+##### Run migrations
+```` npx sequelize-cli db:migrate  ````
