@@ -5,7 +5,10 @@ ODYSSEUS SECURIY
 docker composer build -t permissions_app_api
 
 ```
-```` docker composer up -d ````
+``` docker composer up -d ```
 
 ##### Run migrations
-```` npx sequelize-cli db:migrate  ````
+```
+npx sequelize-cli db:migrate
+
+```
