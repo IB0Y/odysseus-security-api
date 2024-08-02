@@ -1,21 +1,22 @@
 version: '3'
 services:
     database:
-      image: 'postgres:alpine'
+      image: 'postgres'
+      hostname: localhost
       ports:
-          -   5438:5432
+          -   "5437:5432"
       environment:
         POSTGRES_USER: crazy88
         POSTGRES_PASSWORD: '@password12'
         POSTGRES_DB: permissions_db
 
     permissions_api:
-      image: 'permissions_app_api'
+      image: 'permission_app'
 
       env_file:
           -   .env
       ports:
-          -   8500:8500
+          -   8520:8520
       depends_on:
           -   database
       restart: always
