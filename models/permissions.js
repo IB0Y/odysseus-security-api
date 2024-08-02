@@ -10,10 +10,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      console.log({models})
+      // define association here
       Permission.belongsTo(models.Permission, {
         as: 'parent',
         foreignKey: 'parent_uuid'
+      });
+
+      Permission.belongsTo(models.user_permission,{
+        foreignKey: 'user_uuid',
+        sourceKey: 'id'
       });
     }
   }
