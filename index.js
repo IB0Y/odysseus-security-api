@@ -5,7 +5,7 @@ require("dotenv").config({
 const express = require("express");
 const cors = require("cors");
 const consola = require("consola");
-const { PermissionRoute } = require("./routers");
+const { PermissionRoute, UserPermissionRoute } = require("./routers");
 const databaseInstance = require("./database");
 
 const app = express();
@@ -21,7 +21,10 @@ const timeLog =(req, res, next) => {
 }
 
 app.use(timeLog);
+
+/**ROUTES**/
 PermissionRoute(app);
+UserPermissionRoute(app);
 
 /**SERVER**/
 app.listen(process.env.SERVER_PORT, () =>
