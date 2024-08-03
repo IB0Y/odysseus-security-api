@@ -6,6 +6,8 @@ const express = require("express");
 const cors = require("cors");
 const consola = require("consola");
 const { PermissionRoute, UserPermissionRoute } = require("./routers");
+const swaggerUI = require("swagger-ui-express");
+const swaggerSpec = require("./swagger");
 const databaseInstance = require("./database");
 
 const app = express();
@@ -13,6 +15,8 @@ const app = express();
 /**MIDDLEWARES**/
 app.use(express.json());
 app.use(cors());
+// Serve Swagger documentation
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 /** ROUTING **/
 const timeLog =(req, res, next) => {
