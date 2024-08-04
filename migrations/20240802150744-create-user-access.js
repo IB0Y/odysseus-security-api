@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false,
       },
-      access_token: {
+      api_key: {
         type: Sequelize.TEXT,
       },
       is_active: {

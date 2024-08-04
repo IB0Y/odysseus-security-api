@@ -10,7 +10,7 @@ module.exports = {
         primaryKey: true,
       },
       user_uuid: {
-        type: Sequelize.UUID
+        type: Sequelize.INTEGER
       },
       permission_uuid: {
         type: Sequelize.UUID,

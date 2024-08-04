@@ -19,10 +19,10 @@ module.exports = {
       parent_uuid: {
         type: Sequelize.UUID,
       },
-      user_uuid: {
-        type: Sequelize.UUID,
-        allowNull: false,
-      },
+      // user_uuid: {
+      //   type: Sequelize.UUID,
+      //   allowNull: false,
+      // },
       resouce_id: {
         type: Sequelize.INTEGER,
           allowNull: false,
