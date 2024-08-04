@@ -50,10 +50,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
       },
-      user_uuid: {
-        type: DataTypes.UUID,
-        allowNull: false,
-      },
+      // user_uuid: {
+      //   type: DataTypes.UUID,
+      //   allowNull: false,
+      // },
       resouce_id: {
         type: DataTypes.INTEGER,
         allowNull: false,

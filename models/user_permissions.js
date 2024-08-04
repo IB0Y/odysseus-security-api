@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: () => uuidv4(), // Use uuidv4 function to generate UUID
     },
     user_uuid: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     permission_uuid: {

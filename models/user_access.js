@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
     },
-    access_token: {
+    api_key: {
       type: DataTypes.TEXT,
       // allowNull: false,
     },
