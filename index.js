@@ -5,7 +5,7 @@ require("dotenv").config({
 const express = require("express");
 const cors = require("cors");
 const consola = require("consola");
-const { PermissionRoute, UserPermissionRoute } = require("./routers");
+const { PermissionRoute, UserPermissionRoute, AccessRoute } = require("./routers");
 const swaggerUI = require("swagger-ui-express");
 const swaggerSpec = require("./swagger");
 const databaseInstance = require("./database");
@@ -29,6 +29,7 @@ app.use(timeLog);
 /**ROUTES**/
 PermissionRoute(app);
 UserPermissionRoute(app);
+AccessRoute(app);
 
 /**SERVER**/
 app.listen(process.env.SERVER_PORT, () =>
