@@ -10,18 +10,6 @@ services:
         POSTGRES_PASSWORD: '@password12'
         POSTGRES_DB: permissions_db
 
-<<<<<<< Updated upstream
-    permissions_api:
-      image: 'permission_app'
-
-      env_file:
-          -   .env
-      ports:
-          -   8520:8520
-      depends_on:
-          -   database
-      restart: always
-=======
     # permissions_api:
     #   image: 'permissions_app_api'
 
@@ -32,4 +20,3 @@ services:
     #   depends_on:
     #       -   database
     #   restart: always
->>>>>>> Stashed changes
