@@ -9,7 +9,9 @@ const UserPermission = database.user_permission;
  */
 class UserPermissionsService {
  
-    static async addPermission({user_uuid, permission_uuid}) {
+    async addPermission({user_uuid, permission_uuid}) {
+        console.log(user_uuid, permission_uuid);
+        
         try {
             const permission = await UserPermission.create({user_uuid, permission_uuid});
             return permission;
@@ -20,7 +22,7 @@ class UserPermissionsService {
 
     // Fetch permissions by user_uuid
     
-    static async getPermissions({user_uuid}) {
+    async getPermissions({user_uuid}) {
         try {
             const permissions = await UserPermission.findAll({
                 where: {
@@ -33,7 +35,7 @@ class UserPermissionsService {
         }
     }
 
-    static async deletePermission({permission_uuid}) {
+    async deletePermission({permission_uuid}) {
         try {
             const permission = await UserPermission.destroy({
                 where: {
@@ -46,7 +48,7 @@ class UserPermissionsService {
         }
     }
 
-    static async updatePermission({permission_uuid, user_uuid}) {
+    async updatePermission({permission_uuid, user_uuid}) {
         try {
             const permission = await UserPermission.update({user_uuid}, {
                 where: {
@@ -60,4 +62,4 @@ class UserPermissionsService {
     }
 }
 
-export default UserPermissionsService;
+module.exports = new UserPermissionsService();
