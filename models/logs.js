@@ -14,10 +14,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   logs.init({
-    permission_uuid: DataTypes.UUID,
-    user_uuid: DataTypes.UUID,
-    update: DataTypes.JSONB,
-    reason: DataTypes.TEXT
+    permission_uuid: {
+      type: DataTypes.UUID
+    },
+    user_uuid: {
+      type: DataTypes.UUID
+    },
+    update: {
+      type: DataTypes.JSONB
+    },
+    reason: {
+      type: DataTypes.TEXT
+    }
   }, {
     sequelize,
     modelName: 'logs',

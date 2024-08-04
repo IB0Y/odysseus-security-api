@@ -5,7 +5,9 @@ require("dotenv").config({
 const express = require("express");
 const cors = require("cors");
 const consola = require("consola");
-const { PermissionRoute } = require("./routers");
+const { PermissionRoute, UserPermissionRoute, AccessRoute } = require("./routers");
+const swaggerUI = require("swagger-ui-express");
+const swaggerSpec = require("./swagger");
 const databaseInstance = require("./database");
 
 const app = express();
@@ -13,6 +15,8 @@ const app = express();
 /**MIDDLEWARES**/
 app.use(express.json());
 app.use(cors());
+// Serve Swagger documentation
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 /** ROUTING **/
 const timeLog =(req, res, next) => {
@@ -21,7 +25,11 @@ const timeLog =(req, res, next) => {
 }
 
 app.use(timeLog);
+
+/**ROUTES**/
 PermissionRoute(app);
+UserPermissionRoute(app);
+AccessRoute(app);
 
 /**SERVER**/
 app.listen(process.env.SERVER_PORT, () =>

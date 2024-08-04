@@ -14,6 +14,10 @@ class ResponseService {
   static serverError({ res }) {
     return res.status(500).json({ message: "Server error" });
   }
+
+  static unauthorized({ res }) {
+    return res.status(403).json({ message: "Unauthorized" });
+  }
 }
 
 module.exports = ResponseService;
