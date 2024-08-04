@@ -1,9 +1,13 @@
+const UserPermissionsService = require("../services/userPermissionsService");
 const ResponseService = require("../utils/responses");
+const consola = require("consola")
 
 class UserPermissions {
     async getPermissions(req, res) {
         try {
-            const permissions = await UserPermissionsService.getPermissions(req.params.userId);
+            const permissions = await UserPermissionsService.getPermissions({
+                user_uuid: req?.params?.user_uuid
+            });
             return ResponseService.success({
                 res,
                 status: 200,
@@ -17,7 +21,11 @@ class UserPermissions {
     }
     async addPermission(req, res) {
         try {
-            const permission = await UserPermissionsService.addPermission(req.body);
+            const { user_uuid, permission_uuid } = req.body;
+         
+            const permission = await UserPermissionsService.addPermission({
+                user_uuid, permission_uuid
+            });
             return ResponseService.success({
                 res,
                 status: 200,
@@ -31,7 +39,12 @@ class UserPermissions {
     }
     async deletePermission(req, res) {
         try {
-            const permission = await UserPermissionsService.deletePermission(req.params.permissionId);
+            
+            const permission = await UserPermissionsService.deletePermission(
+                {
+                    permission_uuid: req.params.permission_uuid
+                }
+            );
             return ResponseService.success({
                 res,
                 status: 204,
@@ -45,7 +58,11 @@ class UserPermissions {
     }
     async updatePermission(req, res) {
         try {
-            const permission = await UserPermissionsService.updatePermission(req.params.permissionId, req.body);
+            const permission = await UserPermissionsService.updatePermission({
+                permission_uuid: req.params.permission_uuid,
+                user_uuid: req.body.user_uuid
+            });
+            
             return ResponseService.success({
                 res,
                 status: 201,
