@@ -1,6 +1,10 @@
-import { JsonWebTokenError } from "jsonwebtoken";
+const JsonWebToken = require("jsonwebtoken");
 
 
-export const generateToken = (payload) => { 
-    return JsonWebTokenError.sign(payload, process.env.JWT_SECRET, { expiresIn: expire });
+const generateToken = (payload) => {
+    return JsonWebToken.sign(payload, process.env.JWT_SECRET);
 }
+
+module.exports = {
+    generateToken
+};
